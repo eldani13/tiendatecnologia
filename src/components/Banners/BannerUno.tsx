@@ -45,8 +45,7 @@ export default function BannerUno() {
               Macbook <span className="font-bold">Air</span>
             </h2>
             <p className="text-[clamp(0.8rem,1.8vw,1.125rem)] text-gray-600 mt-4 max-w-xl">
-              The new 15-inch MacBook Air makes room for more of what you love
-              with a spacious Liquid Retina display.
+              {"The new 15-inch MacBook Air makes room for more of what you love with a spacious Liquid Retina display."}
             </p>
             <div className="flex ">
               <Link
@@ -85,7 +84,7 @@ export default function BannerUno() {
               Apple <span className="font-bold">AirPods</span> <span>Max</span>
             </h2>
             <p className="text-[clamp(0.8rem,1.6vw,1rem)] text-gray-500 mt-2">
-              Computational audio. Listen, it's powerful
+              {"Computational audio. Listen, it's powerful"}
             </p>
           </div>
         </motion.div>
@@ -136,7 +135,7 @@ export default function BannerUno() {
               Apple <span className="font-bold">AirPods Max</span>
             </h2>
             <p className="text-gray-600 text-sm mt-4">
-              Computational audio. Listen, it's powerful.
+              {"Computational audio. Listen, it's powerful."}
             </p>
           </motion.div>
 
@@ -202,8 +201,7 @@ export default function BannerUno() {
               Macbook <span className="font-bold">Air</span>
             </h2>
             <p className="text-gray-600 text-sm mt-4">
-              The new 15-inch MacBook Air makes room for more of what you love
-              with a spacious Liquid Retina display.
+              {"The new 15-inch MacBook Air makes room for more of what you love with a spacious Liquid Retina display."}
             </p>
             <Link
               href="#"
