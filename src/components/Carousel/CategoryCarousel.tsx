@@ -23,7 +23,7 @@ const categories = [
   { label: "TV", icon: <FaTv size={28} /> },
 ];
 
-export default function CategoryCarousel() {
+export default function CategoryCarousel({ onSelectCategory }: { onSelectCategory: (category: string) => void }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -97,11 +97,12 @@ export default function CategoryCarousel() {
           {categories.map((category, index) => (
             <motion.div
               key={category.label}
+              onClick={() => onSelectCategory(category.label)}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center justify-center bg-[#f3f3f3] rounded-xl w-[120px] h-[130px] flex-shrink-0 hover:bg-gray-200 transition shadow-sm sm:w-[140px] sm:h-[150px] md:w-[160px] md:h-[170px] lg:w-[180px] lg:h-[190px]"
+              className="flex flex-col items-center justify-center bg-[#f3f3f3] rounded-xl w-[120px] h-[130px] flex-shrink-0 hover:bg-gray-200 transition shadow-sm sm:w-[140px] sm:h-[150px] md:w-[160px] md:h-[170px] lg:w-[180px] lg:h-[190px] cursor-pointer"
             >
               <div className="mb-2 text-black">{category.icon}</div>
               <span className="text-sm font-medium text-center text-black">
