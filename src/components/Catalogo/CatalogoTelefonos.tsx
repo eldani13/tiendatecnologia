@@ -9,6 +9,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { FiSliders } from "react-icons/fi";
+import { FiChevronDown } from "react-icons/fi";
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -102,11 +103,14 @@ export default function CatalogoPage() {
                   <FiSliders className="w-4 h-4" />
                 </button>
 
-                <select className="border border-gray-300 rounded px-3 py-2 text-sm text-black w-full">
-                  <option>By rating</option>
-                  <option>By price: Low to High</option>
-                  <option>By price: High to Low</option>
-                </select>
+                <div className="relative w-full">
+                  <select className="flex items-center gap-2 text-black border border-gray-300 rounded px-3 py-2 text-sm w-full appearance-none bg-white pr-10">
+                    <option>By rating</option>
+                    <option>By price: Low to High</option>
+                    <option>By price: High to Low</option>
+                  </select>
+                  <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" />
+                </div>
               </div>
 
               <span className="text-md text-gray-700 hidden md:block">
@@ -117,12 +121,13 @@ export default function CatalogoPage() {
                 Selected Products: <b>{filteredProducts.length}</b>
               </span>
 
-              <div className="hidden md:flex items-center gap-4">
-                <select className="border border-gray-300 rounded px-3 py-2 text-sm text-black">
+              <div className="hidden md:flex items-center gap-4 relative ">
+                <select className="flex items-center gap-2 text-black border border-gray-300 rounded px-3 py-2 text-sm w-full justify-between appearance-none bg-white pr-10">
                   <option>By rating</option>
                   <option>By price: Low to High</option>
                   <option>By price: High to Low</option>
                 </select>
+                <FiChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" />
               </div>
             </div>
 
