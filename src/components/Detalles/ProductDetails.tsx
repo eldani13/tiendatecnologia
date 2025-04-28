@@ -17,7 +17,7 @@ export default function ProductDetails() {
           <div className="divide-y divide-gray-200 text-sm text-gray-700">
             <div className="flex justify-between py-3">
               <span>Screen diagonal</span>
-              <span>6.7"</span>
+              <span>6.7&quot;</span>
             </div>
             <div className="flex justify-between py-3">
               <span>The screen resolution</span>
