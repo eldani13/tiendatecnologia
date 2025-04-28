@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { productosrelacionados } from "@/data/ProductosRelacionados";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function ProductosRelacionados() {
