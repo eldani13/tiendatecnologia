@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-black text-white px-6 md:px-20 py-16">
       <div className="max-w-screen-xl mx-auto flex flex-col md:grid md:grid-cols-3 gap-10">
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <Image src="/Logo1.png" alt="Logo" height={32} width={32} className="h-8 mb-6" />
+          <Image src="/Logo1.png" alt="Logo" height={80} width={80} className=" mb-6" />
           <p className="text-gray-400 max-w-xs">
             We are a residential interior design firm located in Portland. Our
             boutique-studio offers more than
