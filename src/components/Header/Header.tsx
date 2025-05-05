@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home", active: true },
@@ -29,12 +30,15 @@ export default function Header() {
       <div className="flex items-center justify-between px-4 md:px-8 py-4">
         <Image src="/Logo.png" alt="logo" width={50} height={50} />
 
-        <button
+        <motion.button
           className="lg:hidden text-2xl text-black"
           onClick={() => setMenuOpen(!menuOpen)}
+          initial={{ rotate: 0 }}
+          animate={{ rotate: menuOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
         >
           {menuOpen ? <FiX /> : <FiMenu />}
-        </button>
+        </motion.button>
 
         <div className="hidden lg:flex items-center justify-between w-full ml-6">
           <div className="bg-gray-100 rounded-lg px-4 py-2 flex items-center gap-2 w-64">
@@ -80,8 +84,14 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden bg-white px-4 pb-6 flex flex-col gap-6 border-t border-gray-200">
-          <div className="bg-gray-100 rounded-lg px-4 py-2 flex items-center gap-2">
+        <motion.div
+          className="lg:hidden bg-white px-4 pb-6 flex flex-col gap-6 border-t border-gray-200"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="bg-gray-100 rounded-lg px-4 py-2 flex items-center gap-2 w-full mt-4 lg:mt-0">
             <FiSearch className="text-gray-400" />
             <input
               type="text"
@@ -106,18 +116,29 @@ export default function Header() {
           </nav>
 
           <div className="flex justify-around text-2xl text-black pt-4 border-t border-gray-200">
-            <FiHeart />
-            <div className="relative">
-              <FiShoppingCart className="cursor-pointer" />
+            <FiHeart
+              className="cursor-pointer"
+              onClick={() => setMenuOpen(false)}
+            />
+            <div
+              className="relative flex items-center justify-center"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Link href="/pagos">
+                <FiShoppingCart className="text-2xl cursor-pointer" />
+              </Link>
               {cartItems.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 rounded-full">
+                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs px-1.5 rounded-full">
                   {cartItems.length}
                 </span>
               )}
             </div>
-            <FiUser />
+            <FiUser
+              className="cursor-pointer"
+              onClick={() => setMenuOpen(false)}
+            />
           </div>
-        </div>
+        </motion.div>
       )}
     </header>
   );
