@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
 import CheckoutSteps from "../items/ItemsPagos";
+import { motion } from "framer-motion";
 
 interface AddressStepProps {
   onNext: () => void;
@@ -38,29 +39,38 @@ export default function AddressStep({ onNext }: AddressStepProps) {
   const [selectedId, setSelectedId] = useState<number>(1);
 
   return (
-    <div className="max-w-3xl mx-auto px-8 pt-12 pb-20 font-sans text-black">
+    <motion.div
+      className="max-w-3xl mx-auto px-4 sm:px-8 pt-12 pb-20 font-sans text-black"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <CheckoutSteps currentStep={1} />
 
-      <h2 className="text-lg font-semibold mb-6">Select Address</h2>
+      <h2 className="text-lg sm:text-xl font-semibold mb-6">Select Address</h2>
 
       <div className="space-y-4">
         {addresses.map((addr) => (
-          <div
+          <motion.div
             key={addr.id}
-            className={`flex justify-between items-start p-5 rounded-md border ${
+            className={`flex flex-col sm:flex-row justify-between items-start sm:items-center p-5 rounded-md border gap-4 sm:gap-0 ${
               selectedId === addr.id
                 ? "bg-gray-100 border-black"
                 : "bg-gray-50 border-gray-200"
             }`}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
           >
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 w-full">
               <input
                 type="radio"
                 checked={selectedId === addr.id}
                 onChange={() => setSelectedId(addr.id)}
-                className="mt-1 accent-black"
+                className="mt-1 accent-black shrink-0"
               />
-              <div>
+              <div className="flex-1">
                 <div className="flex items-center space-x-2 font-semibold">
                   <span>{addr.label}</span>
                   <span className="text-xs bg-black text-white px-2 py-0.5 rounded">
@@ -71,7 +81,7 @@ export default function AddressStep({ onNext }: AddressStepProps) {
                 <p className="text-sm text-gray-600">{addr.phone}</p>
               </div>
             </div>
-            <div className="flex space-x-4 mt-1">
+            <div className="flex space-x-4 sm:mt-0">
               <button>
                 <RiPencilFill className="text-gray-500 hover:text-black" />
               </button>
@@ -79,7 +89,7 @@ export default function AddressStep({ onNext }: AddressStepProps) {
                 <FaTimes className="text-gray-500 hover:text-red-600" />
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -92,17 +102,17 @@ export default function AddressStep({ onNext }: AddressStepProps) {
         </div>
       </div>
 
-      <div className="flex justify-end gap-10 mt-10">
-        <button className="border border-black px-10 py-3 rounded text-lg font-medium hover:bg-gray-100">
+      <div className="flex flex-col sm:flex-row justify-end gap-4 sm:gap-10 mt-10">
+        <button className="w-full sm:w-auto border border-black px-10 py-3 rounded text-base font-medium hover:bg-gray-100">
           Back
         </button>
         <button
-          className="bg-black text-white px-10 py-3 rounded text-lg font-medium hover:bg-gray-800"
+          className="w-full sm:w-auto bg-black text-white px-10 py-3 rounded text-base font-medium hover:bg-gray-800"
           onClick={onNext}
         >
           Next
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }

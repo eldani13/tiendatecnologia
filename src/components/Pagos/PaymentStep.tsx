@@ -8,6 +8,7 @@ import CardPaymentForm from "../MetodosDePago/CardPaymentForm";
 import CashOnDeliveryInfo from "../MetodosDePago/CashOnDeliveryInfo";
 import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Props {
   onBack: () => void;
@@ -41,20 +42,33 @@ export default function PaymentStep({ onBack }: Props) {
   )}`;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 gap-10 p-4 sm:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="block md:hidden">
         <CheckoutSteps currentStep={3} />
       </div>
-      <div className="hidden md:block bg-white p-6 rounded-xl border">
+
+      <motion.div
+        className="hidden md:block bg-white p-6 rounded-xl border"
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <CheckoutSteps currentStep={3} />
-
         <h2 className="text-lg font-semibold mb-4 text-black">Summary</h2>
-
         <div className="space-y-3">
           {cartItems.map((item) => (
-            <div
+            <motion.div
               key={item.id}
               className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
             >
               <div className="flex items-center space-x-3">
                 <Image
@@ -67,7 +81,7 @@ export default function PaymentStep({ onBack }: Props) {
                 <p className="text-sm text-black">{item.title}</p>
               </div>
               <p className="font-semibold text-black">{item.price}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -97,18 +111,31 @@ export default function PaymentStep({ onBack }: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div>
+      <motion.div
+        className="w-full"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-lg font-semibold mb-4 text-black">Payment</h2>
         <PaymentMethodSelector onChange={setMethod} />
 
-        {method === "card" ? <CardPaymentForm /> : <CashOnDeliveryInfo />}
+        <motion.div
+          key={method}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+        >
+          {method === "card" ? <CardPaymentForm /> : <CashOnDeliveryInfo />}
+        </motion.div>
 
-        <div className="mt-6 w-full flex gap-4">
+        <div className="mt-6 w-full flex flex-col sm:flex-row gap-4">
           <button
             onClick={onBack}
-            className="w-full border border-black text-black px-10 py-3 rounded hover:bg-gray-100"
+            className="w-full sm:w-auto border border-black text-black px-10 py-3 rounded hover:bg-gray-100"
           >
             Back
           </button>
@@ -116,7 +143,7 @@ export default function PaymentStep({ onBack }: Props) {
           {method === "card" ? (
             <button
               onClick={() => alert("Pago procesado")}
-              className="w-full bg-black text-white px-10 py-3 rounded hover:bg-gray-800"
+              className="w-full sm:w-auto bg-black text-white px-10 py-3 rounded hover:bg-gray-800"
             >
               Pay
             </button>
@@ -125,14 +152,14 @@ export default function PaymentStep({ onBack }: Props) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-green-500 text-white px-10 py-3 rounded text-center hover:bg-green-600 flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-green-500 text-white px-10 py-3 rounded text-center hover:bg-green-600 flex items-center justify-center gap-2"
             >
               <FaWhatsapp className="text-lg" />
               WhatsApp
             </a>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
