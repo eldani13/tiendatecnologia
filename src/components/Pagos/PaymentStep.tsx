@@ -42,8 +42,12 @@ export default function PaymentStep({ onBack }: Props) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 p-8">
-      <div className="bg-white p-6 rounded-xl  border">
+      <div className="block md:hidden">
         <CheckoutSteps currentStep={3} />
+      </div>
+      <div className="hidden md:block bg-white p-6 rounded-xl border">
+        <CheckoutSteps currentStep={3} />
+
         <h2 className="text-lg font-semibold mb-4 text-black">Summary</h2>
 
         <div className="space-y-3">

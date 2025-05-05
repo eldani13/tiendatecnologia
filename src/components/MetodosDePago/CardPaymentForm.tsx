@@ -25,23 +25,23 @@ export default function CardPaymentForm() {
           <input
             type="text"
             placeholder="Cardholder Name"
-            className="w-full border rounded px-4 py-2 text-black"
+            className="w-80 border rounded px-4 py-2 text-black"
           />
           <input
             type="text"
             placeholder="Card Number"
-            className="w-full border rounded px-4 py-2 text-black"
+            className="w-80 border rounded px-4 py-2 text-black"
           />
           <div className="flex space-x-4">
             <input
               type="text"
               placeholder="Exp.Date"
-              className="w-1/2 border rounded px-4 py-2 text-black"
+              className="w-36 border rounded px-4 py-2 text-black"
             />
             <input
               type="text"
               placeholder="CVV"
-              className="w-1/2 border rounded px-4 py-2 text-black"
+              className="w-40 border rounded px-4 py-2 text-black"
             />
           </div>
           <div className="flex items-center space-x-2 mb-6">
