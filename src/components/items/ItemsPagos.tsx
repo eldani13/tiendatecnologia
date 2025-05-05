@@ -13,7 +13,6 @@ interface CheckoutStepsProps {
       <div className="flex justify-center mb-10 space-x-20 text-sm">
         {steps.map((step) => {
           const isActive = step.number === currentStep;
-          const isCompleted = step.number < currentStep;
   
           return (
             <div

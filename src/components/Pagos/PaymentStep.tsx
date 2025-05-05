@@ -7,6 +7,7 @@ import { useState } from "react";
 import CardPaymentForm from "../MetodosDePago/CardPaymentForm";
 import CashOnDeliveryInfo from "../MetodosDePago/CashOnDeliveryInfo";
 import { FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 
 interface Props {
   onBack: () => void;
@@ -52,10 +53,12 @@ export default function PaymentStep({ onBack }: Props) {
               className="flex items-center justify-between bg-gray-100 px-4 py-3 rounded-lg"
             >
               <div className="flex items-center space-x-3">
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-10 h-10 object-contain"
+                  width={40}
+                  height={40}
+                  className="object-contain"
                 />
                 <p className="text-sm text-black">{item.title}</p>
               </div>
