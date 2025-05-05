@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { href: "/", label: "Home", active: true },
@@ -21,6 +22,7 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { cartItems } = useCart();
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm border-b border-gray-200">
@@ -61,9 +63,18 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-6 text-2xl text-black ml-8">
-            <FiHeart />
-            <FiShoppingCart />
-            <FiUser />
+            <FiHeart className="cursor-pointer" />
+            <div className="relative">
+              <Link href="/pagos">
+                <FiShoppingCart className="cursor-pointer" />
+              </Link>
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </div>
+            <FiUser className="cursor-pointer" />
           </div>
         </div>
       </div>
@@ -96,7 +107,14 @@ export default function Header() {
 
           <div className="flex justify-around text-2xl text-black pt-4 border-t border-gray-200">
             <FiHeart />
-            <FiShoppingCart />
+            <div className="relative">
+              <FiShoppingCart className="cursor-pointer" />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1.5 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </div>
             <FiUser />
           </div>
         </div>

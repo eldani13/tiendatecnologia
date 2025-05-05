@@ -4,8 +4,10 @@ import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { productos } from "@/data/Productos";
 import { motion } from "framer-motion";
+import { useCart } from "@/context/CartContext";
 
 export default function Productos() {
+  const { addToCart } = useCart();
   return (
     <div className="bg-white py-8 px-4 max-w-7xl mx-auto">
       <div className="flex space-x-8 mb-6 text-lg font-medium">
@@ -42,7 +44,8 @@ export default function Productos() {
             <p className="text-lg font-semibold mb-4 text-black">
               {producto.price}
             </p>
-            <button className="bg-black text-white px-4 py-2 rounded-md cursor-pointer">
+            <button className="bg-black text-white px-4 py-2 rounded-md cursor-pointer"
+             onClick={() => addToCart(producto)}>
               Buy Now
             </button>
             <div className="absolute top-4 right-4">
